@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rollodex.api", "Rollodex.api\Rollodex.api.csproj", "{C85AEFD9-85E3-49BD-9479-410CB32C8228}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rollodex.lib", "Rollodex.lib\Rollodex.lib.csproj", "{F5599166-04E7-47CC-B757-9B4EDE0A8444}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C85AEFD9-85E3-49BD-9479-410CB32C8228}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C85AEFD9-85E3-49BD-9479-410CB32C8228}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C85AEFD9-85E3-49BD-9479-410CB32C8228}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C85AEFD9-85E3-49BD-9479-410CB32C8228}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5599166-04E7-47CC-B757-9B4EDE0A8444}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5599166-04E7-47CC-B757-9B4EDE0A8444}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5599166-04E7-47CC-B757-9B4EDE0A8444}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5599166-04E7-47CC-B757-9B4EDE0A8444}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {47CE9248-9AE3-49F2-8DAB-75B8E4596F58}
+	EndGlobalSection
+EndGlobal
