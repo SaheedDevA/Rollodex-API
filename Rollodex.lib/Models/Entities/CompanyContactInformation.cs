@@ -11,8 +11,8 @@ namespace Rollodex.lib.Models.Entities
         public string EmailAddress { get; set; }
         public string PhoneNumber { get; set; }
         public string HeadOfficeLocation { get; set; }
-        public string OfficeLocations { get; set; }
-        public string LocationsWIthPaidStaff { get; set; }
+        public string OfficeLocations { get; set; } //json list of strings
+        public string LocationsWIthPaidStaff { get; set; } //json list of string
         public string ContactPersonsName { get; set; }
         public string ContactPersonsEmail { get; set; }
         public int CompanyId { get; set; }

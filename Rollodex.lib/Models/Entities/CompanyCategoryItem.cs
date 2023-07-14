@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Rollodex.lib.Models.Entities
 {
-    public class CompanyExpertiseAndNiche : BaseEntity
+    public class CompanyCategoryItem : BaseEntity
     {
         public int CompanyId { get; set; }
         public int CategoryId { get; set; }

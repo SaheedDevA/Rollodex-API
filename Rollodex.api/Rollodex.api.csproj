@@ -20,4 +20,8 @@
 	  <ProjectReference Include="..\Rollodex.lib\Rollodex.lib.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="AppUploads\" />
+	</ItemGroup>
+
 </Project>

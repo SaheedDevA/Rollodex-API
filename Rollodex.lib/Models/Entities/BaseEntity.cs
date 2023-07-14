@@ -20,4 +20,4 @@ namespace Rollodex.lib.Models.Entities
         public int LastUpdatedBy { get; set; }
     }
 }
-}
+

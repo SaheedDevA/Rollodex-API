@@ -11,6 +11,7 @@ namespace Rollodex.lib.Models.Entities
         public string OrganizationName { get; set; }
         public string OrganizationEmail { get; set; }
         public string ContactPersonEmail { get; set;}
-        public int RollodexSystemId { get; set; }
+        public int SystemId { get; set; }
+        public int CompanyId { get;set; }
     }
 }

@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Rollodex.lib.Models.Entities
 {
-    public class StakeHolderMap:BaseEntity
+    public class PendingCategoryItem : BaseEntity
     {
+        public string SuggestedBy { get; set; }
+        public string CategoryItemName { get; set; }
         public int CategoryId { get; set; }
-        public int CompanyId { get; set; }
     }
 }

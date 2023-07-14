@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Rollodex.lib.Models.Entities
 {
-    public class System : BaseEntity
+    public class RolodexSystem : BaseEntity
     {
         public string SystemName { get; set; }
         public string WorkSpaceUrl { get; set; }

@@ -8,6 +8,7 @@ namespace Rollodex.lib.Models.Entities
 {
     public class Company:BaseEntity
     {
+        public int SystemId { get; set; }
         public string CompanyName { get; set; } 
         public string CompanyLogo { get; set; }
         public string WebsiteUrl { get; set; }
