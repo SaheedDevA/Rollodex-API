@@ -1,9 +1,9 @@
-﻿
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Rollodex.lib.Models.Entities;
+using Rolodex.Lib.Utils.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -19,7 +19,12 @@ namespace Rolodex.Lib.Data
         private readonly IHttpContextAccessor _context;
         public IDbConnection connection;
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IHttpContextAccessor context, IConfiguration configuration) : base(options)
+        public ApplicationDbContext(
+            DbContextOptions<ApplicationDbContext> options,
+            IHttpContextAccessor context,
+            IConfiguration configuration
+        )
+            : base(options)
         {
             _context = context;
             connection = new SqlConnection(configuration.GetConnectionString("DefaultConnection"));
@@ -38,13 +43,9 @@ namespace Rolodex.Lib.Data
         public DbSet<RolodexSystem> Systems { get; set; }
         public DbSet<UseCase> UseCases { get; set; }
 
-
-
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
         }
 
         public void SeedData()
@@ -69,76 +70,83 @@ namespace Rolodex.Lib.Data
 
         public void SeedData()
         {
-        /*    // Check if any records exist in the tables
-            if (_dbContext.Accounts.Any() || _dbContext.Teams.Any() || _dbContext.TeamMembers.Any() || _dbContext.Permissions.Any()
-                || _dbContext.Modules.Any() || _dbContext.TeamModulePermissions.Any())
+            // Check if any records exist in the tables
+            if (_dbContext.Categories.Any())
             {
                 return; // Data already seeded, no need to continue
             }
 
-            // Seed initial data for each table
+            // Seed super admin account
             _dbContext.Accounts.AddRange(
                 new Account
                 {
                     Created = DateTime.UtcNow,
-                    Email = "admin@intel.com",
-                    FirstName = "admin",
+                    Email = "dosamuyimnen@gmail.com",
+                    FirstName = "Dennis",
                     IsDisabled = false,
-                    LastName = "intel",
-                    Username = "intel",
+                    LastName = "Osagiede",
+                    Username = "Dennis247",
                     LastTimeLoggedIn = DateTime.UtcNow,
                     LoggedOutTime = DateTime.UtcNow,
                     PasswordHash = SecureTextHasher.Hash("Nappyboy@247"),
                     VerificationToken = "",
-                    HasSetUpAuthenticator = true,
-                    PhoneNumber = "08033344478",
+                    PhoneNumber = "08167828256",
                     UserType = Constants.SuperAdmin,
                 }
             );
 
-            _dbContext.Modules.AddRange(
-            new Module { Name = "Team Manager" },
-            new Module { Name = "Generate Report" },
-            new Module { Name = "Clients" },
-            new Module { Name = "API Integrations" },
-            new Module { Name = "Logs" }
-        );
-
-            List<ApiCall> apiCalls = new List<ApiCall>();
-            for (int i = 0; i < 5; i++)
-            {
-                ApiCall apiCall = new ApiCall()
+            //seed categories
+            _dbContext.Categories.AddRange(
+                new Category
                 {
-                    ApiUrl = $"https://api.example.com/{i}",
-                    CLientId = i + 1,
-                    IsSucessfull = i % 2 == 0,  // Alternate between true and false
-                    Created = DateTime.Now.AddDays(i),
-                    CreatedBy = i + 10,
-                    LastUpdatedBy = i + 20
-                };
-
-                apiCalls.Add(apiCall);
-            }
-
-            _dbContext.ApiCalls.AddRange(apiCalls);
-
-            _dbContext.TeamMembers.AddRange(
-            // Add team member entities here
+                    CategoryName = "Expertise",
+                    CategoryId = 1,
+                    Created = DateTime.UtcNow,
+                    CreatedBy = 1,
+                    LastUpdatedBy = 1,
+                },
+                new Category
+                {
+                    CategoryName = "Skills",
+                    CategoryId = 2,
+                    Created = DateTime.UtcNow,
+                    CreatedBy = 1,
+                    LastUpdatedBy = 1,
+                },
+                new Category
+                {
+                    CategoryName = "Sector",
+                    CategoryId = 3,
+                    Created = DateTime.UtcNow,
+                    CreatedBy = 1,
+                    LastUpdatedBy = 1,
+                },
+                new Category
+                {
+                    CategoryName = "Geography",
+                    Created = DateTime.UtcNow,
+                    CreatedBy = 1,
+                    LastUpdatedBy = 1,
+                },
+                new Category
+                {
+                    CategoryName = "Services",
+                    CategoryId = 4,
+                    Created = DateTime.UtcNow,
+                    CreatedBy = 1,
+                    LastUpdatedBy = 1,
+                },
+                 new Category
+                 {
+                     CategoryName = "Other Expertise",
+                     CategoryId = 5,
+                     Created = DateTime.UtcNow,
+                     CreatedBy = 1,
+                     LastUpdatedBy = 1,
+                 }
             );
 
-            _dbContext.Permissions.AddRange(
-            // Add permission entities here
-            );
-
-            _dbContext.Modules.AddRange(
-            // Add module entities here
-            );
-
-            _dbContext.TeamModulePermissions.AddRange(
-            // Add team module permission entities here
-            );
-
-            _dbContext.SaveChanges();*/
+            _dbContext.SaveChanges();
         }
     }
 }

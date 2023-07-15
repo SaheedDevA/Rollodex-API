@@ -1,10 +1,13 @@
 
 
+using Intel.Lib.Services;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.OpenApi.Models;
 using Rollodex.lib.Data;
+using Rollodex.lib.Models;
+using Rollodex.lib.Models.Request;
 using Rollodex.lib.Services;
 using Rolodex.Lib.Data;
 using Rolodex.Lib.Middlewares;
@@ -25,9 +28,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
 builder.Services.AddTransient<IJwtUtils, JwtUtils>();
-//builder.Services.AddTransient<IEmailService, EmailService>();
+builder.Services.AddTransient<IEmailService, EmailService>();
 builder.Services.AddTransient<IDapperDbConnection, DapperDbConnection>();
 
+//add services for class
+builder.Services.AddTransient<IAccountServices, AccountServices>();
+builder.Services.AddTransient<IHttpServices, HttpServices>();
 
 builder.Services.Configure<EmailConfiguration>(builder.Configuration.GetSection("EmailConfiguration"));
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -38,7 +44,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // configure strongly typed settings object
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 builder.Services.Configure<EmailConfiguration>(builder.Configuration.GetSection("EmailConfiguration"));
-builder.Services.AddTransient<IHttpServices, HttpServices>();
 
 
 

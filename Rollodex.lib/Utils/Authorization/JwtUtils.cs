@@ -9,6 +9,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using Rollodex.lib.Models.Entities;
+using Rollodex.lib.Models;
 
 public interface IJwtUtils
 {

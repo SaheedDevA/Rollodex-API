@@ -8,6 +8,8 @@ namespace Rollodex.lib.Models.Entities
 {
     public class Category:BaseEntity
     {
+        public int CategoryId { get;set; }
         public string CategoryName { get; set; }
+        public int SystemId { get;set; }
     }
 }

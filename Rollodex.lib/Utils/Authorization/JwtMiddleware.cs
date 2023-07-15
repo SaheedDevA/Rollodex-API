@@ -1,10 +1,9 @@
 namespace Rolodex.Lib.Utils.Authorization;
 
 using Rolodex.Lib.Data;
-using Rolodex.Lib.Utils.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
-
+using Rollodex.lib.Models;
 
 public class JwtMiddleware
 {

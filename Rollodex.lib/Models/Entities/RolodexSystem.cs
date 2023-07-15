@@ -11,6 +11,7 @@ namespace Rollodex.lib.Models.Entities
         public string SystemName { get; set; }
         public string WorkSpaceUrl { get; set; }
         public string ThemeColor { get; set; }
+        public string SystemLogo { get;set; }
         public int AdminId { get; set; }
         public bool HasCreatedDataSet { get; set; }
         public bool HasInvitedOrganizations { get; set; }
