@@ -25,6 +25,14 @@ namespace Rollodex.api.Controllers
             return Ok(response);
         }
 
+        [AllowAnonymous]
+        [HttpGet("Accounts")]
+        public IActionResult GetAccounts()
+        {
+            var response = _accountServices.GetAccounts();
+            return Ok(response);
+        }
+
 
         [AllowAnonymous]
         [HttpPost("CreateWorkSpace")]
@@ -39,6 +47,14 @@ namespace Rollodex.api.Controllers
         public IActionResult SetUpWorkSpace(SetupWorkSpaceRequest model)
         {
             var response = _accountServices.SetUpWorkSpace(model);
+            return Ok(response);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("GetWorksSpaces")]
+        public IActionResult GetWorksSpaces()
+        {
+            var response = _accountServices.GetWorkSpaces();
             return Ok(response);
         }
 

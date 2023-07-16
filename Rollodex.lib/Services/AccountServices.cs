@@ -20,8 +20,10 @@ namespace Intel.Lib.Services
     public interface IAccountServices
     {
         Response<AuthenticateResponse> Authenticate(AuthenticateRequest model, string ipAddress);
+        Response<IEnumerable<Account>> GetAccounts();
         Response<int> CreateWorkSpace(CreateWorkSpaceRequest model);
         Response<int> SetUpWorkSpace(SetupWorkSpaceRequest model);
+        Response<IEnumerable<RolodexSystem>> GetWorkSpaces();
         Response<string> VerifyToken(VerifyTokendRequest model);
         Response<string> SendToken(string email);
         Response<string> ResetPasswordRequest(ResetPasswordRequest resetPasswordRequest);
@@ -103,9 +105,6 @@ namespace Intel.Lib.Services
 
         public Response<int> CreateWorkSpace(CreateWorkSpaceRequest model)
         {
-            //validate user type
-          
-
             //check if password is string
             var isPasswordStrong = SecureTextHasher.IsPasswordStrong(model.Password);
             if (!isPasswordStrong)
@@ -155,9 +154,39 @@ namespace Intel.Lib.Services
             }
 
             //validate and upload base 64 logo
+            string imagePath = "";
+            if (StringHelpers.IsBase64String(model.base64StringLogo))
+            {
+                var folderName = Path.Combine("AppUploads", "WorkSpace");
+                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+                if (!Directory.Exists(pathToSave))
+                {
+                    Directory.CreateDirectory(pathToSave);
+                }
+                var fileName = $"{model.WorkSpaceName}.png";
+                var fullPath = Path.Combine(pathToSave, fileName);
+                imagePath = Path.Combine(folderName, fileName);
+                imagePath = imagePath.Replace("\\", "//");
+
+
+                try
+                {
+                    var bytes = Convert.FromBase64String(model.base64StringLogo);
+                    File.WriteAllBytes(fullPath, bytes);
+                }
+                catch (Exception ex)
+                {
+                    throw new AppException(ex.ToString());
+                }
+
+            }
+            else
+            {
+                throw new AppException("Invalid Image Uploaded");
+            }
 
             var admin = _context.Accounts.FirstOrDefault(x => x.Email.Trim().ToLower()
-            == model.AdminEmail.Trim().ToLower());
+            == model.AdminEmail.Trim().ToLower() && x.UserType == Constants.Admin);
 
             if (admin == null)
             {
@@ -170,6 +199,7 @@ namespace Intel.Lib.Services
                 SystemName = model.WorkSpaceName,
                 HasStartedMapping = false,
                 ThemeColor = model.Color,
+                SystemLogo = imagePath.Replace(_appSettings.BaseUrl, ""),
                 HasInvitedOrganizations = false,
                 HasCreatedDataSet = false,
                 WorkSpaceUrl =  model.WorkSpaceName + _appSettings.MapUrl,
@@ -185,6 +215,17 @@ namespace Intel.Lib.Services
                 Succeeded = true,
                 Message = "Work Space set up was Successful"
 
+            };
+        }
+
+        public Response<IEnumerable<RolodexSystem>> GetWorkSpaces()
+        {
+            var allWOrkSPace = _context.Systems.AsEnumerable();
+            return new Response<IEnumerable<RolodexSystem>>
+            {
+                Data = allWOrkSPace,
+                Message = Constants.SucessfulStatus,
+                Succeeded = true
             };
         }
 
@@ -536,6 +577,17 @@ namespace Intel.Lib.Services
                 HtmlContent = $@"<h4>Verification Token Email</h4>
                         {message}"
             });
+        }
+
+        public Response<IEnumerable<Account>> GetAccounts()
+        {
+             var allAccounts = _context.Accounts.AsEnumerable();
+            return new Response<IEnumerable<Account>>
+            {
+                Data = allAccounts,
+                Message= Constants.SucessfulStatus,
+                Succeeded = true
+            };
         }
 
         #endregion
