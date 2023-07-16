@@ -24,4 +24,10 @@
 	  <Folder Include="AppUploads\WorkSpace\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Update="AppUploads\WorkSpace\dennisVault.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
 </Project>
