@@ -190,7 +190,7 @@ namespace Rollodex.lib.Services
 
             return new Response<bool>
             {
-                Message = Constants.SuccessfulStatus,
+                Message = Constants.SucessfulStatus,
                 Data = true,
                 Succeeded = true
             };

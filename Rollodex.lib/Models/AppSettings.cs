@@ -9,4 +9,5 @@ public class AppSettings
     public int MaximumAdminCount { get; set; }
     public int TokenExpirationTimeHours { get; set; }
     public string BaseUrl { get; set; }
+    public string MapUrl { get; set; }
 }

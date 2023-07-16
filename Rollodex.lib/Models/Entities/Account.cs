@@ -10,13 +10,13 @@ namespace Rollodex.lib.Models.Entities
 {
     public class Account : BaseEntity
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
 
         [EmailAddress]
         public string Email { get; set; }
-        public string Username { get; set; }
-        public string PhoneNumber { get; set; }
+        public string? Username { get; set; }
+        public string? PhoneNumber { get; set; }
         public string PasswordHash { get; set; }
         public string VerificationToken { get; set; }
         public DateTime? Verified { get; set; }

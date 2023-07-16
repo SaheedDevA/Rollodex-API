@@ -24,8 +24,6 @@ namespace Rollodex.lib.Models.Request
 
         [Required]
         public string Password { get; set; }
-        [Required]
-        public string UserType { get; set; }
     }
 
     public class VerifyTokendRequest

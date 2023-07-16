@@ -91,9 +91,10 @@ namespace Rolodex.Lib.Data
                     PasswordHash = SecureTextHasher.Hash("Nappyboy@247"),
                     VerificationToken = "",
                     PhoneNumber = "08167828256",
-                    UserType = Constants.SuperAdmin,
+                    UserType = Constants.Admin,
                 }
             );
+
 
             //seed categories
             _dbContext.Categories.AddRange(

@@ -6,7 +6,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using Google.Authenticator;
 using Rollodex.lib.Models.Entities;
 using Rollodex.lib.Models.Request;
 using Rollodex.lib.Models.Response;
@@ -104,6 +103,8 @@ namespace Intel.Lib.Services
 
         public Response<int> CreateWorkSpace(CreateWorkSpaceRequest model)
         {
+            //validate user type
+          
 
             //check if password is string
             var isPasswordStrong = SecureTextHasher.IsPasswordStrong(model.Password);
@@ -122,8 +123,10 @@ namespace Intel.Lib.Services
             var account = new Account
             {
                 Email = model.Email,
-                UserType = model.UserType,
+                UserType = Constants.Admin,
                 Created = DateTime.UtcNow,
+                FirstName = "",
+                LastName ="",
                 VerificationToken = generateVerificationToken(),
                 PasswordHash = SecureTextHasher.Hash(model.Password)
              };
@@ -146,7 +149,7 @@ namespace Intel.Lib.Services
             var existingWorkspace = _context.Systems.FirstOrDefault(x => x.SystemName.ToLower().Trim()
             == model.WorkSpaceName.ToLower().Trim());
 
-            if(existingWorkspace == null)
+            if(existingWorkspace != null)
             {
                 throw new AppException("The name for this workspace already exist");
             }
@@ -169,7 +172,7 @@ namespace Intel.Lib.Services
                 ThemeColor = model.Color,
                 HasInvitedOrganizations = false,
                 HasCreatedDataSet = false,
-                WorkSpaceUrl = model.WorkSpaceName,
+                WorkSpaceUrl =  model.WorkSpaceName + _appSettings.MapUrl,
                 CreatedBy = admin.Id,
             };
 
